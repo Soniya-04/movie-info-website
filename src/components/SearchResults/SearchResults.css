@@ -1,0 +1,40 @@
+.search-results {
+    padding: 2rem;
+    background-color: #121212;
+    color: #fff;
+  }
+  
+  .search-results h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .results-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  
+  .movies, .tv-shows {
+    flex: 1;
+  }
+  
+  .movie-cards, .tv-show-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .movie-cards p, .tv-show-cards p {
+    color: #ccc;
+    text-align: center;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  

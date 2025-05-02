@@ -1,0 +1,69 @@
+.sortbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    flex-wrap: wrap;
+    background-color: #111;
+  }
+  
+  .left-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .pill {
+    background-color: #222;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 0.4rem 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pill:hover {
+    background-color: #333;
+  }
+  
+  .pill.active {
+    background-color: #e50914;
+    color: white;
+  }
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .arrow {
+    margin-left: 8px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background-color: #222;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 100;
+    min-width: 120px;
+  }
+  
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #333;
+  }
+  
+  .input-pill {
+    width: 80px;
+    text-align: center;
+  }
+  

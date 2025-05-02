@@ -1,0 +1,30 @@
+.tv-shows-container {
+    padding: 2rem;
+    background-color: #121212;
+    color: #fff;
+  }
+  
+  .tv-shows-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .tv-show-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .tv-show-cards p {
+    color: #ccc;
+    text-align: center;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  
