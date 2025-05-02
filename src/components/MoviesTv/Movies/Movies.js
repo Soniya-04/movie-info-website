@@ -14,7 +14,7 @@ export default function Movies() {
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [minRating, setMinRating] = useState(0);
   const [selectedYear, setSelectedYear] = useState(null);
-  const [sortAZ, setSortAZ] = useState(false);
+  const [sortAZ, setSortAZ] = useState('');
 
   useEffect(() => {
     fetchGenres('movie').then(res => setGenres(res.data.genres));
@@ -25,10 +25,11 @@ export default function Movies() {
     if (selectedGenre) query += `&with_genres=${selectedGenre}`;
     if (minRating > 0) query += `&vote_average.gte=${minRating}`;
     if (selectedYear) query += `&primary_release_year=${selectedYear}`;
+
     fetchFromTMDb(query).then(res => {
       let results = res.data.results;
       if (sortAZ) {
-        results = results.sort((a, b) => a.title.localeCompare(b.title));
+        results = results.filter(movie => movie.title.startsWith(sortAZ));
       }
       setMovies(results);
     });
@@ -36,22 +37,11 @@ export default function Movies() {
 
   return (
     <div className="movies-page">
-      <section className="hero" style={{ backgroundImage: "url('/assets/images/pexel2.jpg')" }}>
-        <div className="overlay" />
-        <div className="hero-content">
-          <h1>Explore Popular Movies</h1>
-          <SearchBar />
-        </div>
-      </section>
+      <div className="top-bar">
+        <h2 className="app-title">🎬 AAA Movies</h2>
+        <SearchBar context="movies" />
 
-      <Sortbar
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        selectedYear={selectedYear}
-        setSelectedYear={setSelectedYear}
-        sortAZ={sortAZ}
-        setSortAZ={setSortAZ}
-      />
+      </div>
 
       <GenreFilter
         genres={genres}
@@ -59,17 +49,38 @@ export default function Movies() {
         setSelectedGenre={setSelectedGenre}
       />
 
-      <RatingFilter
-        minRating={minRating}
-        setMinRating={setMinRating}
-      />
+      <div className="sort-rating-container">
+        <Sortbar
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          selectedYear={selectedYear}
+          setSelectedYear={setSelectedYear}
+          selectedAZ={sortAZ}
+          setSelectedAZ={setSortAZ}
+        />
+        <RatingFilter
+          minRating={minRating}
+          setMinRating={setMinRating}
+        />
+      </div>
 
       <section className="movies-section">
-        <h2>{selectedGenre ? 'Filtered Movies' : 'Popular Movies'}</h2>
+      <h2>
+  {(() => {
+    if (sortBy === 'release_date.desc') return 'Latest Movies';
+    if (sortBy === 'vote_average.desc') return 'Top Rated Movies';
+    if (selectedGenre) return 'Filtered Movies';
+    return 'Popular Movies';
+  })()}
+</h2>
+
         <div className="movies-grid">
-          {movies.map(movie => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+        {movies
+  .filter(movie => movie.poster_path) // Only include movies with posters
+  .map(movie => (
+    <MovieCard key={movie.id} movie={movie} />
+))}
+
         </div>
       </section>
     </div>

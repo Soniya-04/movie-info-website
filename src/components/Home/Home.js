@@ -28,7 +28,8 @@ export default function Home() {
         <div className="hero-content">
           <h1>Find Your Next Movie or TV Show</h1>
           <p>Search, explore, and discover trending titles</p>
-          <SearchBar />
+          <SearchBar context="home" />
+
         </div>
       </section>
 

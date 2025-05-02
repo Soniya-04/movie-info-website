@@ -1,16 +1,15 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
 
-export default function SearchBar() {
+export default function SearchBar({ context = 'home' }) {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim()) {
-      navigate(`/search/${query}`);
+      navigate(`/search/${query}?context=${context}`);
     }
   };
 

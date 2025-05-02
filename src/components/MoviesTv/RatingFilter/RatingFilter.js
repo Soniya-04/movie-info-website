@@ -1,12 +1,11 @@
 import React from 'react';
 import './RatingFilter.css';
 
+
 export default function RatingFilter({ minRating, setMinRating }) {
   return (
     <div className="rating-filter">
-      <button className="pill-button">
-        Rating: {minRating}
-      </button>
+      <span>⭐</span>
       <input
         type="range"
         min="0"
@@ -15,6 +14,7 @@ export default function RatingFilter({ minRating, setMinRating }) {
         value={minRating}
         onChange={e => setMinRating(e.target.value)}
       />
+      <span>{minRating}</span>
     </div>
   );
 }

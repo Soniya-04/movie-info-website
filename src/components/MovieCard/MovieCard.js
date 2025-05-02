@@ -4,6 +4,8 @@ import './MovieCard.css';
 
 export default function MovieCard({ movie }) {
   return (
+    
+    
     <Link to={`/movie/${movie.id}`} className="card-link">
       <div className="movie-card">
         <img

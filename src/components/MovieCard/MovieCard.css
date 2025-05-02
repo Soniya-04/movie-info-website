@@ -44,4 +44,17 @@
   .rating {
     color: #f5c518; /* Yellow star color */
   }
+  .movie-title {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    color: #fff;
+  
+    /* Truncate long titles with ... */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  
+    display: block;
+    max-width: 100%;
+  }
   

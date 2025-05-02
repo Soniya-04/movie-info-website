@@ -1,69 +1,66 @@
 .sortbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    flex-wrap: wrap;
-    background-color: #111;
-  }
-  
-  .left-controls {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .pill {
-    background-color: #222;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    padding: 0.4rem 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .pill:hover {
-    background-color: #333;
-  }
-  
-  .pill.active {
-    background-color: #e50914;
-    color: white;
-  }
-  
-  .dropdown {
-    position: relative;
-  }
-  
-  .arrow {
-    margin-left: 8px;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    background-color: #222;
-    border: 1px solid #333;
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 100;
-    min-width: 120px;
-  }
-  
-  .dropdown-item {
-    padding: 0.5rem 1rem;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #333;
-  }
-  
-  .input-pill {
-    width: 80px;
-    text-align: center;
-  }
-  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.sort-label {
+  font-size: 16px;
+  color: white;
+  margin-right: 10px;
+}
+
+.left-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.custom-select-wrapper {
+  position: relative;
+}
+
+.sort-select {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 32px 8px 16px; /* <--- Increased right padding to 32px */
+  font-size: 14px;
+  cursor: pointer;
+  appearance: none;
+  min-width: 100px;
+  font-family: inherit;
+  transition: background-color 0.3s;
+}
+
+
+/* Active (selected) item – turns orange */
+.sort-select.active-option {
+  background-color: orange;
+  color: white;
+  font-weight: bold;
+}
+
+/* Dropdown options still default */
+.sort-select option {
+  background-color: #1c1c1c;
+  color: white;
+}
+
+/* Remove outline color */
+.sort-select:focus {
+  outline: none;
+}
+
+/* Down arrow */
+.custom-select-wrapper::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: white;
+  font-size: 12px;
+}

@@ -1,54 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Sortbar.css';
 
-const Sortbar = ({ sortBy, setSortBy, selectedYear, setSelectedYear, sortAZ, setSortAZ }) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const sortOptions = [
-    { value: 'popularity.desc', label: 'Popular' },
-    { value: 'release_date.desc', label: 'Latest' },
-    { value: 'vote_average.desc', label: 'Top Rated' },
-  ];
-
+export default function Sortbar({ sortBy, setSortBy, selectedYear, setSelectedYear, selectedAZ, setSelectedAZ }) {
   return (
     <div className="sortbar">
+      <div className="sort-label">Sort by:</div>
       <div className="left-controls">
-        <div className="dropdown">
-          <button className="pill" onClick={() => setDropdownOpen(!dropdownOpen)}>
-            {sortOptions.find(opt => opt.value === sortBy).label} <span className="arrow">&#x25BC;</span>
-          </button>
-          {dropdownOpen && (
-            <div className="dropdown-menu">
-              {sortOptions.map(opt => (
-                <div key={opt.value} className="dropdown-item" onClick={() => {
-                  setSortBy(opt.value);
-                  setDropdownOpen(false);
-                }}>
-                  {opt.label}
-                </div>
-              ))}
-            </div>
-          )}
+        <div className="custom-select-wrapper">
+          <select
+          className={`sort-select ${sortBy ? 'active-option' : ''}`}
+
+            value={sortBy}
+            onChange={e => setSortBy(e.target.value)}
+          >
+            <option value="popularity.desc">Popular</option>
+            <option value="release_date.desc">Latest</option>
+            <option value="vote_average.desc">Top Rated</option>
+          </select>
         </div>
 
-        <input
-          type="number"
-          min="1900"
-          max={new Date().getFullYear()}
-          placeholder="Year"
-          value={selectedYear || ''}
-          onChange={e => setSelectedYear(e.target.value)}
-          className="pill input-pill"
-        />
+        <div className="custom-select-wrapper">
+          <select
+            className={`sort-select ${selectedYear ? 'active-option' : ''}`}
+            value={selectedYear || ''}
+            onChange={e => setSelectedYear(e.target.value)}
+          >
+            <option value="">Year</option>
+            {[...Array(25)].map((_, i) => {
+              const year = 2024 - i;
+              return <option key={year} value={year}>{year}</option>;
+            })}
+          </select>
+        </div>
 
-        <button
-          className={`pill ${sortAZ ? 'active' : ''}`}
-          onClick={() => setSortAZ(prev => !prev)}
-        >
-          A-Z
-        </button>
+        <div className="custom-select-wrapper">
+          <select
+            className={`sort-select ${selectedAZ ? 'active-option' : ''}`}
+            value={selectedAZ || ''}
+            onChange={e => setSelectedAZ(e.target.value)}
+          >
+            <option value="">A-Z</option>
+            {'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(letter => (
+              <option key={letter} value={letter}>{letter}</option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );
-};
-
-export default Sortbar;
+}
