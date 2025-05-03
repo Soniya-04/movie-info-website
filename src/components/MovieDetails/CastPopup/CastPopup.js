@@ -2,12 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CastPopup.css';
 
-const CastPopup = ({ cast, movieId, onClose }) => {
+const CastPopup = ({ cast, onClose }) => {
   const navigate = useNavigate();
 
   const handleActorClick = (actorId) => {
     navigate(`/cast/${actorId}`, {
-      state: { from: 'castpopup', movieId }, // ✅ pass movieId
+      state: { from: 'castpopup' }, // This tells CastDetail it came from popup
     });
   };
 

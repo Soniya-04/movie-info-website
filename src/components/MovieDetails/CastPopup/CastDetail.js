@@ -26,17 +26,22 @@ const CastDetail = () => {
     fetchActor();
   }, [id]);
 
-  
   const handleBack = () => {
-    if (location.state?.from === 'castpopup' && location.state?.movieId) {
-      navigate(`/movie/${location.state.movieId}`, {
+    const from = location.state?.from;
+    const movieId = location.state?.movieId;
+
+    if (from && movieId) {
+      const isMovie = from.startsWith('/movie/');
+      const isTV = from.startsWith('/tv/');
+
+      navigate(isMovie ? `/movie/${movieId}` : `/tv/${movieId}`, {
         state: { reopenPopup: true },
       });
     } else {
       navigate('/');
     }
   };
-  
+
   if (!actor) return <div className="loading">Loading...</div>;
 
   const imageUrl = actor.profile_path
@@ -45,7 +50,7 @@ const CastDetail = () => {
 
   return (
     <div className="cast-detail">
-      <button className="back-button" onClick={handleBack}>←</button>
+      <button className="back-button" onClick={handleBack}>← Back</button>
       <div className="cast-detail-content">
         <div className="cast-image">
           <img src={imageUrl} alt={actor.name} />
@@ -55,19 +60,18 @@ const CastDetail = () => {
           <p className={`bio-text ${expanded ? 'expanded' : ''}`}>
             {actor.biography || 'No biography available.'}
           </p>
-          {actor.biography &&
-  actor.biography.length > 600 && !expanded && (
-    <button className="read-more-btn" onClick={() => setExpanded(true)}>
-      Read More
-    </button>
-)}
 
-{actor.biography && expanded && (
-  <button className="read-more-btn" onClick={() => setExpanded(false)}>
-    Read Less
-  </button>
-)}
+          {actor.biography && actor.biography.length > 600 && !expanded && (
+            <button className="read-more-btn" onClick={() => setExpanded(true)}>
+              Read More
+            </button>
+          )}
 
+          {actor.biography && expanded && (
+            <button className="read-more-btn" onClick={() => setExpanded(false)}>
+              Read Less
+            </button>
+          )}
         </div>
       </div>
     </div>
