@@ -29,7 +29,6 @@ const MovieDetail = () => {
 
     fetchData();
 
-    // ✅ Reopen CastPopup if coming back from CastDetail
     if (location.state?.reopenPopup) {
       setShowCastPopup(true);
     }
@@ -44,9 +43,12 @@ const MovieDetail = () => {
     genres,
     vote_average,
     runtime,
+    release_date,
     credits,
+    videos,
   } = movie;
 
+  const releaseYear = release_date ? new Date(release_date).getFullYear() : 'N/A';
   const director = credits?.crew?.find(person => person.job === 'Director');
   const cast = credits?.cast?.slice(0, 5);
 
@@ -63,16 +65,18 @@ const MovieDetail = () => {
           <div className="sub-info">
             <span className="rating">⭐ {vote_average ? Math.round(vote_average) : 'N/A'}</span>
             <span className="duration">{runtime || 'N/A'} min</span>
+            <span className="year">• {releaseYear}</span>
           </div>
           <p className="overview">{overview}</p>
           <p className="director">
             <strong>Director:</strong> {director?.name || 'N/A'}
           </p>
-          <div className="cast">
+          <p className="cast">
             <strong>Starring:</strong>{' '}
-            {cast?.map(actor => actor.name).join(', ') || 'N/A'}{' '}
-            <button onClick={() => setShowCastPopup(true)}>More</button>
-          </div>
+            <span className="clickable-cast" onClick={() => setShowCastPopup(true)}>
+              {cast?.map(actor => actor.name).join(', ') || 'N/A'}
+            </span>
+          </p>
           <div className="genres">
             {genres?.map(genre => (
               <span key={genre.id} className="genre-tag">
@@ -80,21 +84,31 @@ const MovieDetail = () => {
               </span>
             ))}
           </div>
-          {watchLink && (
-            <a
-              href={watchLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="watch-now"
-            >
-              Watch Now
-            </a>
-          )}
-        </div>
-        <div className="trailer-button">
-          <button onClick={() => setShowTrailerModal(true)}>▶ Watch Trailer</button>
+          <div className="action-buttons">
+            {watchLink && (
+              <a
+                href={watchLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="watch-now"
+              >
+                ▶ Watch Now
+              </a>
+            )}
+
+            {videos?.results?.length > 0 && (
+              <button
+                className="watch-trailer"
+                onClick={() => setShowTrailerModal(true)}
+                title="Watch Trailer"
+              >
+                ▶ <span>Watch Trailer</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
+
       {showCastPopup && (
         <CastPopup cast={credits?.cast} movieId={id} onClose={() => setShowCastPopup(false)} />
       )}

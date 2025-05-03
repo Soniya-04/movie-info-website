@@ -1,3 +1,5 @@
+// src/components/MovieDetails/CastDetail/CastDetail.js
+
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -31,12 +33,7 @@ const CastDetail = () => {
     const movieId = location.state?.movieId;
 
     if (from && movieId) {
-      const isMovie = from.startsWith('/movie/');
-      const isTV = from.startsWith('/tv/');
-
-      navigate(isMovie ? `/movie/${movieId}` : `/tv/${movieId}`, {
-        state: { reopenPopup: true },
-      });
+      navigate(from, { state: { reopenPopup: true } });
     } else {
       navigate('/');
     }
@@ -50,7 +47,7 @@ const CastDetail = () => {
 
   return (
     <div className="cast-detail">
-      <button className="back-button" onClick={handleBack}>← Back</button>
+      <button className="back-button" onClick={handleBack}>←</button>
       <div className="cast-detail-content">
         <div className="cast-image">
           <img src={imageUrl} alt={actor.name} />

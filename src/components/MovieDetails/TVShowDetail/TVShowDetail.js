@@ -84,29 +84,29 @@ const TVShowDetail = () => {
           </div>
 
           {seasons?.length > 0 && (
-            <div className="seasons-section">
-              <h3>Seasons</h3>
-              <div className="season-list">
-                {seasons.map((season) => (
-                  <div key={season.id} className="season-card">
-                    <img
-                      src={
-                        season.poster_path
-                          ? `https://image.tmdb.org/t/p/w200${season.poster_path}`
-                          : 'https://via.placeholder.com/150x225?text=No+Image'
-                      }
-                      alt={season.name}
-                    />
-                    <div className="season-info">
-                      <strong>{season.name}</strong>
-                      <p>{season.episode_count} episodes</p>
-                      <p>{season.air_date?.split('-')[0]}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+  <div className="seasons-section">
+    <h3>Seasons</h3>
+    <div className="season-list">
+      {seasons.map((season) => (
+        <div key={season.id} className="season-card">
+          {season.poster_path && (
+            <img
+              src={`https://image.tmdb.org/t/p/w200${season.poster_path}`}
+              alt={season.name}
+            />
           )}
+          <div className="season-info">
+            <strong>{season.name}</strong>
+            <p>{season.episode_count} episodes</p>
+            <p>{season.air_date?.split('-')[0]}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+
+          
 
           <div className="actions">
             {trailerKey && (
