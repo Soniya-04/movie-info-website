@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { searchMovies, searchTVShows } from '../../utils/api';
+import { searchMovies, searchTVShows } from '../utils/api';
+import MovieCard from '../MovieCard/MovieCard';
+import TVShowCard from '../TVShowCard/TVShowCard';
+import './SearchResults.css';
 
 const SearchResults = () => {
   const { query } = useParams();
@@ -14,33 +17,35 @@ const SearchResults = () => {
   useEffect(() => {
     const fetchResults = async () => {
       setLoading(true);
-      const movieResults = await searchMovies(query);
-      const tvShowResults = await searchTVShows(query);
+
+      const [movieResults, tvShowResults] = await Promise.all([
+        (context === 'home' || context === 'movies') ? searchMovies(query) : Promise.resolve({ data: { results: [] } }),
+        (context === 'home' || context === 'tvshows') ? searchTVShows(query) : Promise.resolve({ data: { results: [] } }),
+      ]);
+
       setResults({
-        movies: movieResults.data.results,
-        tvShows: tvShowResults.data.results,
+        movies: movieResults.data.results || [],
+        tvShows: tvShowResults.data.results || [],
       });
+
       setLoading(false);
     };
 
     fetchResults();
-  }, [query]);
+  }, [query, context]);
 
   if (loading) return <div className="loading">Loading...</div>;
 
   return (
     <div className="search-results">
       {(context === 'home' || context === 'movies') && (
-        <div className="movies">
-          <h2>Movies</h2>
-          <div className="movie-cards">
+        <div className="section">
+          <h2>🎬 Movies</h2>
+          <div className="horizontal-scroll movie-scroll">
             {results.movies.length > 0 ? (
-              results.movies.map(movie => (
-                <div key={movie.id} className="movie-card">
-                  <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-                  <h3>{movie.title}</h3>
-                </div>
-              ))
+              results.movies
+                .filter(movie => movie.poster_path)
+                .map(movie => <MovieCard key={movie.id} movie={movie} />)
             ) : (
               <p>No movies found.</p>
             )}
@@ -49,16 +54,13 @@ const SearchResults = () => {
       )}
 
       {(context === 'home' || context === 'tvshows') && (
-        <div className="tv-shows">
-          <h2>TV Shows</h2>
-          <div className="tv-show-cards">
+        <div className="section">
+          <h2>📺 TV Shows</h2>
+          <div className="horizontal-scroll tvshow-scroll">
             {results.tvShows.length > 0 ? (
-              results.tvShows.map(tvShow => (
-                <div key={tvShow.id} className="tv-show-card">
-                  <img src={`https://image.tmdb.org/t/p/w500${tvShow.poster_path}`} alt={tvShow.name} />
-                  <h3>{tvShow.name}</h3>
-                </div>
-              ))
+              results.tvShows
+                .filter(show => show.poster_path)
+                .map(show => <TVShowCard key={show.id} show={show} />)
             ) : (
               <p>No TV shows found.</p>
             )}

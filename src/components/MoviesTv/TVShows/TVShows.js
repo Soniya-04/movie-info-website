@@ -17,20 +17,41 @@ export default function TVShows() {
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
-    let query = `/discover/tv?sort_by=${sortBy}`;
-    if (selectedGenre) query += `&with_genres=${selectedGenre}`;
-    if (minRating > 0) query += `&vote_average.gte=${minRating}`;
-    if (selectedYear) query += `&first_air_date_year=${selectedYear}`;
-
-    fetchFromTMDb(query).then((res) => {
-      let results = res.data.results;
-      if (sortAZ) {
-        results = results.filter(show => show.name.toLowerCase().startsWith(sortAZ.toLowerCase()));
+    const fetchData = async () => {
+      let results = [];
+  
+      if (sortBy === 'on_the_air') {
+        const response = await fetchFromTMDb('/tv/on_the_air');
+        results = response.data.results;
+  
+        // ✅ Manually filter by year if selected
+        if (selectedYear) {
+          results = results.filter(show => {
+            const year = new Date(show.first_air_date).getFullYear();
+            return year === parseInt(selectedYear);
+          });
+        }
+      } else {
+        let query = `/discover/tv?sort_by=${sortBy}`;
+        if (selectedGenre) query += `&with_genres=${selectedGenre}`;
+        if (minRating > 0) query += `&vote_average.gte=${minRating}`;
+        if (selectedYear) query += `&first_air_date_year=${selectedYear}`;
+        const response = await fetchFromTMDb(query);
+        results = response.data.results;
       }
+  
+      if (sortAZ) {
+        results = results.filter(show =>
+          show.name.toLowerCase().startsWith(sortAZ.toLowerCase())
+        );
+      }
+  
       setTVShows(results);
-    });
+    };
+  
+    fetchData();
   }, [sortBy, selectedGenre, minRating, selectedYear, sortAZ]);
-
+  
   useEffect(() => {
     fetchGenres('tv').then(res => setGenres(res.data.genres));
   }, []);
@@ -50,6 +71,7 @@ export default function TVShows() {
 
       <div className="sort-rating-container">
         <Sortbar
+          mediaType="tv"
           sortBy={sortBy}
           setSortBy={setSortBy}
           selectedYear={selectedYear}
@@ -57,15 +79,20 @@ export default function TVShows() {
           selectedAZ={sortAZ}
           setSelectedAZ={setSortAZ}
         />
-        <RatingFilter
-          minRating={minRating}
-          setMinRating={setMinRating}
-        />
+
+{sortBy !== 'vote_average.desc' && (
+  <RatingFilter
+    minRating={minRating}
+    setMinRating={setMinRating}
+  />
+)}
+
+        
       </div>
 
       <h2>
         {(() => {
-          if (sortBy === 'first_air_date.desc') return 'Latest TV Shows';
+          if (sortBy === 'on_the_air') return 'Currently Airing TV Shows';
           if (sortBy === 'vote_average.desc') return 'Top Rated TV Shows';
           if (selectedGenre) return 'Filtered TV Shows';
           return 'Popular TV Shows';
@@ -73,11 +100,15 @@ export default function TVShows() {
       </h2>
 
       <div className="tvshows-grid">
-        {tvShows
-          .filter(show => show.poster_path)
-          .map((show) => (
-            <TVShowCard key={show.id} show={show} />
-        ))}
+        {tvShows.length > 0 ? (
+          tvShows
+            .filter(show => show.poster_path)
+            .map(show => (
+              <TVShowCard key={show.id} show={show} />
+            ))
+        ) : (
+          <p style={{ color: '#ccc', textAlign: 'center' }}>No TV shows found.</p>
+        )}
       </div>
     </div>
   );

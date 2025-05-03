@@ -1,40 +1,38 @@
 .search-results {
-    padding: 2rem;
-    background-color: #121212;
-    color: #fff;
-  }
-  
-  .search-results h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .results-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-  
-  .movies, .tv-shows {
-    flex: 1;
-  }
-  
-  .movie-cards, .tv-show-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .movie-cards p, .tv-show-cards p {
-    color: #ccc;
-    text-align: center;
-  }
-  
-  .loading {
-    text-align: center;
-    font-size: 1.5rem;
-    color: #fff;
-  }
-  
+  padding: 2rem;
+  background-color: #121212;
+  color: #fff;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+}
+
+.horizontal-scroll > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 220px;
+}
+
+.horizontal-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}

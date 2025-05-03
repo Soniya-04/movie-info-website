@@ -1,0 +1,115 @@
+.cast-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    color: white;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-in-out;
+    padding-top: 80px; /* ensures nothing touches the top */
+  }
+  
+  /* Animate fade-in */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+ 
+  
+  /* ✅ Horizontally scrollable cast row with extra gap below */
+  .cast-scroll-container {
+    margin-top: 20px;
+    padding: 1rem 2rem;
+    padding-bottom: 3rem; /* more space below cards */
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 2rem;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+  
+  /* Cards */
+  .cast-card {
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 1rem;
+    min-width: 220px;
+    height: 330px;
+    flex: 0 0 auto;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+  }
+  
+  .cast-card:hover {
+    transform: scale(1.06);
+  }
+  
+  .cast-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 1rem auto;
+  }
+  
+  .cast-card .actor-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  
+  .cast-card .character-name {
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+ 
+  .cast-scroll-container::-webkit-scrollbar {
+    height: 8px;
+    margin-top: 2rem;
+  }
+  
+  .cast-scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .cast-scroll-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    min-width: 80px; /* ✅ This increases horizontal thumb length */
+  }
+  
+  .popup-back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.6); /* dark transparent background */
+    color: white;
+    font-size: 2rem;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    z-index: 1100;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .popup-back-button:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* darker on hover */
+  }
+  
+  

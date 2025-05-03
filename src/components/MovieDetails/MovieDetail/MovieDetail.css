@@ -1,0 +1,63 @@
+.movie-detail-container {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    min-height: 100vh;
+  }
+  
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .details {
+    max-width: 60%;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .sub-info {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .rating {
+    color: orange;
+  }
+  
+  .overview {
+    margin-bottom: 1rem;
+  }
+  
+  .director,
+  .cast,
+  .genres {
+    margin-bottom: 1rem;
+  }
+  
+  .genre-tag {
+    background-color: #333;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 5px;
+  }
+  
+  .watch-now {
+    background-color: #e50914;
+    color: white;
+    padding: 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .trailer-button {
+    align-self: center;
+  }
+  

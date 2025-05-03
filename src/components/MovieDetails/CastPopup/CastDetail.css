@@ -1,0 +1,85 @@
+.cast-detail {
+    padding: 2rem;
+    color: white;
+    background-color: #111;
+    min-height: 100vh;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .cast-detail-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-left: 2rem; /* 👈 Moves everything inside (image + text) to the right */
+  }
+  
+  
+  .cast-image img {
+    width: 220px;
+    border-radius: 10px;
+  }
+  
+  .cast-info {
+    flex: 1;
+    max-width: 900px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 2rem;
+  }
+  
+  .cast-info h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  /* Truncated bio with line-clamp (no vibration) */
+  .cast-info p.bio-text {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #ccc;
+    text-align: justify;
+    margin-left: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: none;
+  }
+  
+  /* Expanded bio state */
+  .cast-info p.bio-text.expanded {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+  
+  /* Optional scrollbar when expanded */
+  .cast-info p.bio-text.expanded::-webkit-scrollbar {
+    width: 6px;
+  }
+  .cast-info p.bio-text.expanded::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+  
+  /* Read More button properly aligned */
+  .read-more-btn {
+    display: block;
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    background: none;
+    color: #ff9800;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  

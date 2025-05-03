@@ -38,7 +38,7 @@ export default function Movies() {
   return (
     <div className="movies-page">
       <div className="top-bar">
-        <h2 className="app-title">🎬 AAA Movies</h2>
+        <h2 className="app-title">🎬  Movies</h2>
         <SearchBar context="movies" />
 
       </div>
@@ -50,18 +50,23 @@ export default function Movies() {
       />
 
       <div className="sort-rating-container">
-        <Sortbar
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          selectedYear={selectedYear}
-          setSelectedYear={setSelectedYear}
-          selectedAZ={sortAZ}
-          setSelectedAZ={setSortAZ}
-        />
-        <RatingFilter
-          minRating={minRating}
-          setMinRating={setMinRating}
-        />
+      <Sortbar
+  mediaType="movie"
+  sortBy={sortBy}
+  setSortBy={setSortBy}
+  selectedYear={selectedYear}
+  setSelectedYear={setSelectedYear}
+  selectedAZ={sortAZ}
+  setSelectedAZ={setSortAZ}
+/>
+
+{sortBy !== 'vote_average.desc' && (
+  <RatingFilter
+    minRating={minRating}
+    setMinRating={setMinRating}
+  />
+)}
+
       </div>
 
       <section className="movies-section">

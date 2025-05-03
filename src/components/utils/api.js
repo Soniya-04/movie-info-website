@@ -20,7 +20,7 @@ export const fetchMovieDetail = (id) =>
   axios.get(`${BASE_URL}/movie/${id}`, {
     params: {
       api_key: API_KEY,
-      append_to_response: 'credits'
+        append_to_response: 'credits,videos'
     }
   });
 
@@ -29,7 +29,7 @@ export const fetchTVShowDetail = (id) =>
   axios.get(`${BASE_URL}/tv/${id}`, {
     params: {
       api_key: API_KEY,
-      append_to_response: 'credits'
+      append_to_response: 'credits,videos'
     }
   });
 
@@ -67,3 +67,15 @@ export const fetchFromTMDb = (endpoint, extraParams = {}) =>
       ...extraParams
     }
   });
+// Fetch where to watch (OTT providers) for a movie
+export const fetchWatchProviders = (id) =>
+  axios.get(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, {
+    params: {
+      api_key: API_KEY
+    }
+  });
+  export const fetchActorDetail = (personId) =>
+    axios.get(`https://api.themoviedb.org/3/person/${personId}`, {
+      params: { api_key: API_KEY }
+    });
+  
