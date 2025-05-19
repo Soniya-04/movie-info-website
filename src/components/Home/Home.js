@@ -54,30 +54,31 @@ export default function Home() {
     }
   };
   const removeFromFavorites = async (mediaId) => {
-    try {
-      await fetch('http://localhost:8080/api/remove-favorite', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `mediaId=${mediaId}`,
-      });
-      setFavorites(prev => prev.filter(item => item.id !== mediaId));
-    } catch (err) {
-      console.error('Failed to remove favorite:', err);
-    }
-  };
-  
-  const removeFromWatchlist = async (mediaId) => {
-    try {
-      await fetch('http://localhost:8080/api/remove-watchlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `mediaId=${mediaId}`,
-      });
-      setWatchlist(prev => prev.filter(item => item.id !== mediaId));
-    } catch (err) {
-      console.error('Failed to remove from watchlist:', err);
-    }
-  };
+  try {
+    await fetch('http://localhost:8080/api/remove-favorite', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `media_id=${mediaId}`, // ✅ fixed field name
+    });
+    setFavorites(prev => prev.filter(item => item.id !== mediaId));
+  } catch (err) {
+    console.error('Failed to remove favorite:', err);
+  }
+};
+
+const removeFromWatchlist = async (mediaId) => {
+  try {
+    await fetch('http://localhost:8080/api/remove-watchlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `media_id=${mediaId}`, // ✅ fixed field name
+    });
+    setWatchlist(prev => prev.filter(item => item.id !== mediaId));
+  } catch (err) {
+    console.error('Failed to remove from watchlist:', err);
+  }
+};
+
   
 
   useEffect(() => {
