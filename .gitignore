@@ -2,22 +2,42 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 
-# testing
-/coverage
+# Node dependencies (frontend)
+frontend/node_modules/
+frontend/.pnp
+frontend/.pnp.js
 
-# production
-/build
+# Frontend build output
+frontend/build/
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Testing coverage
+frontend/coverage/
 
+# Environment files
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Eclipse and Java backend
+backend/.settings/
+backend/.classpath
+backend/.project
+backend/bin/
+
+# Compiled Java files
+*.class
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
