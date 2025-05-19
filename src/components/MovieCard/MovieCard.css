@@ -1,60 +1,59 @@
 .card-link {
-    text-decoration: none;
-  }
-  
-  .movie-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-    transition: transform 0.3s;
-    width: 170px;
-    margin: 1rem;
-    background-color: #111;
-  }
-  
-  .movie-card:hover {
-    transform: translateY(-6px);
-  }
-  
-  .movie-card img {
-    width: 100%;
-    display: block;
-    border-radius: 8px 8px 0 0;
-  }
-  
-  .card-info {
-    padding: 0.6rem;
-    color: #fff;
-    font-size: 0.85rem;
-  }
-  
-  .movie-title {
-    font-weight: bold;
-    margin-bottom: 0.2rem;
-    color: #fff;
-  }
-  
-  .movie-meta {
-    display: flex;
-    justify-content: space-between;
-    color: #aaa;
-  }
-  
-  .rating {
-    color: #f5c518; /* Yellow star color */
-  }
-  .movie-title {
-    font-weight: bold;
-    margin-bottom: 0.2rem;
-    color: #fff;
-  
-    /* Truncate long titles with ... */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  
-    display: block;
-    max-width: 100%;
-  }
-  
+  text-decoration: none;
+}
+
+.movie-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s;
+  width: 170px;
+  margin: 1rem;
+  background-color: #111;
+}
+
+.movie-card:hover {
+  transform: translateY(-6px);
+}
+
+.movie-card img {
+  width: 100%;
+  display: block;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-info {
+  padding: 0.6rem;
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+.movie-title {
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  max-width: 100%;
+}
+
+.movie-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: #aaa;
+  gap: 0.3rem;
+}
+
+.year {
+  color: #aaa;
+  font-size: 0.8rem;
+}
+
+.rating {
+  color: #f5c518; /* Yellow star color */
+}

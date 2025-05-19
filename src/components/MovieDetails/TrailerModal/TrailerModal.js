@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './TrailerModal.css';
 
-const TrailerModal = ({ movieId, onClose }) => {
+const TrailerModal = ({ movieId, onClose, autoPlay = false }) => {
   const [trailerKey, setTrailerKey] = useState(null);
   const [error, setError] = useState(false);
 
@@ -42,15 +42,17 @@ const TrailerModal = ({ movieId, onClose }) => {
 
   if (!trailerKey) return null;
 
+  const embedUrl = `https://www.youtube.com/embed/${trailerKey}?rel=0&controls=1${autoPlay ? '&autoplay=1' : ''}`;
+
   return (
     <div className="trailer-modal">
       <button className="close-button" onClick={onClose}>×</button>
       <iframe
         width="100%"
         height="100%"
-        src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&rel=0&controls=1`}
+        src={embedUrl}
         frameBorder="0"
-        allow="autoplay; encrypted-media; fullscreen"
+        allow={`${autoPlay ? 'autoplay;' : ''} encrypted-media; fullscreen`}
         allowFullScreen
         title="YouTube Trailer"
       ></iframe>

@@ -78,4 +78,9 @@ export const fetchWatchProviders = (id) =>
     axios.get(`https://api.themoviedb.org/3/person/${personId}`, {
       params: { api_key: API_KEY }
     });
-  
+    export const fetchTrendingToday = () =>
+      axios.get(`${BASE_URL}/trending/all/day?api_key=${API_KEY}`);
+    
+    export const fetchLatestTrailers = () =>
+      axios.get(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`);
+    

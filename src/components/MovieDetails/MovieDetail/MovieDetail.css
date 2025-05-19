@@ -1,173 +1,208 @@
 body {
-    margin: 0;
-    overflow-x: hidden;
-  }
-  
-  header, footer {
-    background: transparent;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .movie-detail-container {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: white;
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
-  }
-  
-  
-  .overlay {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 4rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    min-height: 100vh;
-  }
-  
-  .details {
-    max-width: 60%;
-    z-index: 1;
-  }
-  
-  .title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-  
-  .sub-info {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-  }
-  
-  .rating {
-    color: orange;
-  }
-  
-  .overview {
-    margin-bottom: 1rem;
-  }
-  
-  .director,
-  .cast,
-  .genres {
-    margin-bottom: 1rem;
-  }
-  
-  .genre-tag {
-    background-color: #333;
-    padding: 0.5rem 1rem;
-    margin-right: 0.5rem;
-    border-radius: 20px;
-    display: inline-block;
-    font-size: 0.9rem;
-  }
-  
-  .watch-now {
-    background-color: #333;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    border: none;
-    font-size: 1rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    display: inline-block;
-    text-decoration: none;
-  }
-  /* Fix button layout */
-.action-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  
-  .watch-now,
-  .watch-trailer {
-    background-color: #333;
-    color: white;
-    padding: 0.5rem 1.2rem;
-    border-radius: 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  /* Fix full background to reach footer */
-  .movie-detail-container {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: white;
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Ensure overlay fills height */
-  .overlay {
-    flex: 1;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 4rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  
-  .clickable-cast {
-    cursor: pointer;
-    color: #f0f0f0;
-    transition: color 0.2s ease, transform 0.2s ease;
-  }
-  
-  .clickable-cast:hover {
-    color: #ffffff;
-    transform: scale(1.02);
-  }
-  
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-  }
-  
-  .modal-content iframe {
-    width: 80vw;
-    height: 45vw;
-    border: none;
-  }
-  
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 2rem;
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-  }
-  .movie-detail-container header,
-.movie-detail-container footer {
-  background: transparent;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+header, footer {
+  background-color: #111;
+  color: white;
   position: relative;
   z-index: 2;
 }
+
+.movie-detail-container {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 4rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.details {
+  max-width: 60%;
+  z-index: 1;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.sub-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.rating {
+  color: orange;
+}
+
+.overview,
+.director,
+.cast {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1rem;
+}
+
+.genres {
+  margin-bottom: 1rem;
+}
+
+.genre-tag {
+  background-color: #333;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 0.9rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  justify-content: flex-start; /* ← changed from flex-end */
+  flex-wrap: wrap;
+}
+.watch-now,
+.watch-trailer {
+  background-color: orange;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.watch-now:hover,
+.watch-trailer:hover {
+  background-color: #e69500;
+}
+
+.director strong,
+.cast strong {
+  color: orange;
+}
+
+.clickable-cast {
+  cursor: pointer;
+  color: rgba(240, 240, 240, 0.85);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.clickable-cast:hover {
+  color: #ffffff;
+  transform: scale(1.02);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content iframe {
+  width: 80vw;
+  height: 45vw;
+  border: none;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+.review-button-wrapper {
+  margin-top: 1.5rem;
+}
+
+.read-reviews-button {
+  background-color: #333; /* matching genre tag */
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.read-reviews-button:hover {
+  background-color: #555;
+}
+.sub-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.icon-buttons.inline-icons {
+  display: flex;
+  gap: 8px;
+  margin-left: 10px;
+}
+
+.favorite-btn,
+.watchlist-btn {
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  color: white;
+  padding: 0;
+}
+
+.favorite-btn.active {
+  color: red;
+}
+
+.watchlist-btn.added {
+  color: #00ff99;
+}
+
+.favorite-btn:hover,
+.watchlist-btn:hover {
+  transform: scale(1.2);
+}
+
+

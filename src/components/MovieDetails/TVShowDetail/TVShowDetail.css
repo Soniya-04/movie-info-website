@@ -1,108 +1,248 @@
-/* src/components/Details/TVShowDetail.css */
-
 .tvshow-detail {
-    background-size: cover;
-    background-position: center;
-    color: white;
-    min-height: 100vh;
-    position: relative;
-  }
-  
-  .tvshow-overlay {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 3rem;
-  }
-  
-  .tvshow-content {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  .title {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
-  
-  .rating-duration {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    align-items: center;
-  }
-  
-  .overview {
-    margin: 1.5rem 0;
-    line-height: 1.6;
-  }
-  
-  .genres {
-    margin-bottom: 1.5rem;
-  }
-  
-  .genre-tag {
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.15);
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    margin: 0.2rem;
-    font-size: 0.9rem;
-  }
-  
-  .actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  
-  .trailer-button,
-  .cast-button {
-    background-color: #e50914;
-    color: white;
-    padding: 0.8rem 1.2rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  
-  .trailer-button:hover,
-  .cast-button:hover {
-    background-color: #b00610;
-  }
-  
-  /* Seasons section */
-  .seasons-section {
-    margin-top: 2.5rem;
-  }
-  
-  .season-list {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-  }
-  
-  .season-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
-    min-width: 150px;
-    max-width: 150px;
-    text-align: center;
-  }
-  
-  .season-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  .season-info {
-    padding: 0.5rem;
-    font-size: 0.85rem;
-    color: #ddd;
-  }
-  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.tvshow-overlay {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.tvshow-content {
+  max-width: 60%;
+  z-index: 1;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+  color: #f0f0f0;
+}
+
+.rating-duration {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  align-items: center;
+}
+
+.rating {
+  color: orange;
+}
+
+.duration,
+.release-date {
+  opacity: 0.85;
+}
+
+.overview {
+  margin-bottom: 1rem;
+  opacity: 0.85;
+}
+
+.genre-heading {
+  color: orange;
+  margin-right: 1rem;
+  font-size: 1.1rem;
+}
+
+.genres {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.85;
+}
+
+.genre-tag {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  margin: 0.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Starring section */
+.cast-inline {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.section-heading {
+  color: orange;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+.cast-list-scroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.clickable-cast {
+  cursor: pointer;
+  color: #fff;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+/* Seasons section */
+.seasons-section {
+  margin-top: 3rem;
+  width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.seasons-section .section-heading {
+  color: orange;
+  font-size: 1.2rem;
+  margin-left: 0;
+  margin-bottom: 1rem;
+}
+
+.season-list {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  width: 100vw;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+  box-sizing: border-box;
+}
+
+.season-list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.season-list::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+.season-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.season-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 220px;
+  max-width: 220px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+/* Action buttons */
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.watch-now,
+.watch-trailer {
+  background-color: orange;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.watch-now:hover,
+.watch-trailer:hover {
+  background-color: #e69500;
+}
+
+/* Review button matches genre-tag */
+.review-button-wrapper {
+  margin-top: 1.5rem;
+}
+
+.read-reviews-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.read-reviews-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.sub-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.icon-buttons.inline-icons {
+  display: flex;
+  gap: 8px;
+  margin-left: 10px;
+}
+
+.favorite-btn,
+.watchlist-btn {
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  color: white;
+  padding: 0;
+}
+
+.favorite-btn.active {
+  color: red;
+}
+
+.watchlist-btn.added {
+  color: #00ff99;
+}
+
+.favorite-btn:hover,
+.watchlist-btn:hover {
+  transform: scale(1.2);
+}

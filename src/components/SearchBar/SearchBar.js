@@ -13,11 +13,18 @@ export default function SearchBar({ context = 'home' }) {
     }
   };
 
+  let placeholderText = "Search  movies or shows...";
+  if (context === 'movies') placeholderText = "Search for movies only";
+  else if (context === 'tvshows') placeholderText = "Search for tvshows only";
+  const inputStyle =
+  context === 'home'
+    ? { paddingRight: '3rem' } // bigger right padding for home placeholder
+    : {};
   return (
     <form onSubmit={handleSubmit} className="search-bar">
       <input
         type="text"
-        placeholder="Search for movies or shows..."
+        placeholder={placeholderText}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
